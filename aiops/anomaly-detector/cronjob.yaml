@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: aiops-anomaly-detector
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: anomaly-detector
+            image: 122610517295.dkr.ecr.us-east-1.amazonaws.com/aiops-anomaly-detector:v3
+            imagePullPolicy: Always
+          restartPolicy: OnFailure

@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: aiops-anomaly-monitor
+  namespace: default
+  labels:
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: aiops-anomaly-detector
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 15s

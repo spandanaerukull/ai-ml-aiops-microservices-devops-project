@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: aiops-anomaly-monitor
+  namespace: default
+  labels:
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      job-name: aiops-v3-test
+  podMetricsEndpoints:
+    - port: metrics
+      path: /metrics
+      interval: 15s

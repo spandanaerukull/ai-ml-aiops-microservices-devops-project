@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aiops-anomaly-detector
+  labels:
+    app: aiops-anomaly-detector
+spec:
+  selector:
+    job-name: aiops-v3-test
+  ports:
+    - name: metrics
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP
