@@ -1,0 +1,10 @@
+provider_installation {
+  filesystem_mirror {
+    path    = "C:/terraform-plugins"
+    include = ["registry.terraform.io/hashicorp/aws"]
+  }
+
+  direct {
+    exclude = ["registry.terraform.io/hashicorp/aws"]
+  }
+}

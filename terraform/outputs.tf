@@ -1,11 +1,27 @@
+output "vpc_id" {
+  value = aws_vpc.main.id
+}
+
+output "public_subnet_1_id" {
+  value = aws_subnet.public_1.id
+}
+
+output "public_subnet_2_id" {
+  value = aws_subnet.public_2.id
+}
+
+output "private_subnet_1_id" {
+  value = aws_subnet.private_1.id
+}
+
+output "private_subnet_2_id" {
+ value = aws_subnet.private_2.id
+}
+
 output "cluster_name" {
-  value = module.eks.cluster_name
+  value = aws_eks_cluster.main.name
 }
 
 output "cluster_endpoint" {
-  value = module.eks.cluster_endpoint
-}
-
-output "vpc_id" {
-  value = module.vpc.vpc_id
+  value = aws_eks_cluster.main.endpoint
 }

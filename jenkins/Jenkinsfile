@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_REGION = 'us-east-1'
+        AWS_ACCOUNT_ID = '122610517295'
+        ECR_REPO = 'frontend'
+        IMAGE_TAG = 'v1'
+        IMAGE_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO}:${IMAGE_TAG}"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('SonarQube Scan') {
+            steps {
+                echo 'Running SonarQube Scan...'
+            }
+        }
+
+        stage('Trivy Scan') {
+            steps {
+                echo 'Running Trivy Scan...'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                echo "Building Docker image: ${IMAGE_URI}"
+            }
+        }
+
+        stage('Push to ECR') {
+            steps {
+                echo "Pushing image to ECR: ${IMAGE_URI}"
+            }
+        }
+
+        stage('Deploy to EKS') {
+            steps {
+                echo 'Deploying to EKS...'
+            }
+        }
+    }
+}
