@@ -7,3 +7,5 @@ terraform.tfvars
 kubeconfig
 .env
 .DS_Store
+terraform/.terraform/
+*.lock.hcl
