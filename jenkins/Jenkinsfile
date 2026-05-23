@@ -27,7 +27,13 @@ pipeline {
                 echo 'Running Trivy Scan...'
             }
         }
-
+stage('Prometheus/Grafana Validation') {
+    steps {
+        echo 'Checking monitoring stack...'
+        sh 'kubectl get pods -n monitoring'
+        sh 'kubectl get svc -n monitoring'
+    }
+} 
         stage('Docker Build') {
             steps {
                 echo "Building Docker image: ${IMAGE_URI}"
